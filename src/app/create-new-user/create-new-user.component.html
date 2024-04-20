@@ -1,0 +1,69 @@
+<app-navbar></app-navbar>
+
+<div class="container cont2">
+  <div class="card p-4 mx-auto" style="max-width: 400px;">
+    <h1 class="text-center mb-4">Add new User</h1>
+    <form class="speaker-form" #newUserForm="ngForm" (ngSubmit)="createNewUser()">
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input
+          #name="ngModel"
+          name="name"
+          type="text"
+          minlength="5"
+          required
+          [(ngModel)]="newUser.name"
+          class="form-control"
+        />
+        <div class="alert alert-danger" *ngIf="name.invalid && name.touched">
+          Your name is invalid, min length is 5 characters
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input
+          #email="ngModel"
+          name="email"
+          type="email"
+          required
+          pattern="[a-z0-9._%+-]+@[a-z0-9-.]+\.[a-z]{2,}$"
+          [(ngModel)]="newUser.email"
+          class="form-control"
+        />
+        <div class="alert alert-danger" *ngIf="email.invalid && email.touched">
+          Your e-mail is invalid
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label for="gender" class="form-label">Gender</label>
+        <select id="gender" name="gender" [(ngModel)]="newUser.gender" required class="form-control">
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+      </div>
+  
+      <div class="text-center">
+        <button class="btn btn-primary" type="submit" [disabled]="!newUserForm.form.valid">Save</button>
+      </div>
+    </form>
+    <p class="response text-center mt-3">{{ respose }}</p>
+  </div>
+</div>
+
+
+  <!-- Footer -->
+  <footer class="text-center text-lg-start bg-body-tertiary text-muted ">
+    <!-- Copyright -->
+    <div class="text-center pt-4 pb-2" style="background-color: rgba(0, 0, 0, 0.05);">
+    © 2021 Copyright:
+    <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+    </div>
+    <div class="text-center pb-4" style="background-color: rgba(0, 0, 0, 0.05);">
+        Created by <b>Luigi Buono</b>
+        </div>
+    
+    <!-- Copyright -->
+</footer>
+<!-- Footer -->

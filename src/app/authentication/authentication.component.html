@@ -1,0 +1,117 @@
+
+<nav class="navbar navbar-light bg-light d-flex justify-content-center align-items-center">
+  <a class="navbar-brand text-center titleNav" href="#">Community<span style="color: #007bff;">HUB</span></a>
+</nav>
+
+
+
+<div class="px-8 dark:bg-gray-50 dark:text-gray-800 ">
+  <div class="flex items-center mx-auto container justify-center md:justify-between  banner1">
+      <div class="testo">
+          <span>Il CommunityHUB è un luogo virtuale dove gli utenti possono condividere idee, scambiare opinioni e discutere su una varietà di argomenti. Attraverso post, commenti e interazioni sociali, i membri della community possono creare un ambiente inclusivo e stimolante per esprimere le proprie opinioni e connettersi con persone che condividono interessi simili. Questo hub digitale promuove la partecipazione attiva e la condivisione di conoscenze, incoraggiando una cultura di collaborazione e dialogo aperto.</span>
+      </div>
+  </div>
+</div>
+
+<div class="px-8 dark:bg-gray-50 dark:text-gray-800" (click)="goToLogin()">
+  <div class="flex items-center mx-auto container justify-center md:justify-between  banner2">
+      <div class="title-container">
+          <h3 class="mb-4 text-center title2">ENTRA IN COMMUNITY</h3>
+      </div>
+  </div>
+</div>
+
+<div class="container cont2" >
+  <div class="row justify-content-center align-items-center">
+  <div class="col-md-6">
+      <form #newUserForm="ngForm" (ngSubmit)="login()" id="loginForm" class="p-4 border rounded bg-light">
+      <div class="title-container">
+          <h3 class="mb-4 text-center title">LOGIN</h3>
+      </div>
+      <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input  type="name" 
+                  name="name"
+                  class="form-control" 
+                  id="name" 
+                  #name="ngModel"
+                  [(ngModel)]="newCurrentUser.name"
+                  placeholder="Enter your name"
+                  minlength="2"
+                  required />
+          <div class="alert alert-danger" *ngIf="name.invalid && name.touched">Your name is invalid</div>
+      </div>
+
+      <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input  type="email"
+                  name="email" 
+                  class="form-control" 
+                  id="email" 
+                  #email="ngModel" 
+                  placeholder="Enter your email"
+                  [(ngModel)]="newCurrentUser.email"
+                  pattern="[a-z0-9._%+-]+@[a-z0-9-.]+\.[a-z]{2,}$"
+                  required />
+          <div class="form-text">We'll never share your email with anyone else.</div>
+          <div class="alert alert-danger" *ngIf="email.invalid && email.touched">Your e-mail is invalid</div>
+      </div>   
+
+      <div class="mb-3">
+          <label for="gender" class="form-label">Gender</label>
+          <select id="gender"
+                  name="gender"
+                  required
+                  class="form-control"
+                  [(ngModel)]="newCurrentUser.gender">
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          </select>
+      </div>   
+      
+      <div class="mb-3">
+          <label for="token" class="form-label">Token</label>
+          <input  type="password" 
+                  name="token"
+                  class="form-control" 
+                  id="token"
+                  #token="ngModel"
+                  [(ngModel)]="tokenKey"
+                  placeholder="Access Token"
+                  minlength="64"
+                  maxlength="64"
+                  required />
+          <div class="alert alert-danger" *ngIf="token.invalid && token.touched">Your token is invalid</div>
+      </div>
+
+      <div class="mb-3" >
+          <label class="form-check-label" for="exampleCheck1">To get your token click
+              <a href="https://gorest.co.in/consumer/login" target="_blank">here</a>
+          </label>
+      </div>
+
+      <div class="text-center">
+          <button type="submit" class="btn" [disabled]="!newUserForm.form.valid">Submit</button>
+      </div>
+      
+      </form>
+  </div>
+  </div>
+</div>
+
+
+
+  <!-- Footer -->
+  <footer class="text-center text-lg-start bg-body-tertiary text-muted ">
+      <!-- Copyright -->
+      <div class="text-center pt-4 pb-2" style="background-color: rgba(0, 0, 0, 0.05);">
+      © 2021 Copyright:
+      <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+      </div>
+      <div class="text-center pb-4" style="background-color: rgba(0, 0, 0, 0.05);">
+          Created by <b>Luigi Buono</b>
+          </div>
+      
+      <!-- Copyright -->
+  </footer>
+  <!-- Footer -->

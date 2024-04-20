@@ -1,0 +1,88 @@
+<app-navbar></app-navbar>
+
+<div class="container cont2 d-flex justify-content-center">
+  <div class="container-post-detail">
+    <h1 class="text-center ">{{ post.title }}</h1>
+    <p style="margin-top: 3rem;">{{ post.body }}</p>
+    <span class="text-center" style="margin-top: 20px" *ngIf="!isFetching">COMMENT:</span>
+    <div class="container-comment" *ngFor="let comment of comments">
+      <h2>{{ comment.name }}</h2>
+      <p>{{ comment.body }}</p>
+    </div>
+
+    <p class="text-center" *ngIf="comments.length === 0 && !isFetching">No comments yet</p>
+
+    <div class="button-group d-flex justify-content-center mt-4">
+      <button class="btn btn-primary" style="margin-right: 1rem; background-color: #007bff; color: white;" 
+        (click)="addCommentBox = !addCommentBox"
+        class="add-comment-text text-center"
+        *ngIf="!isFetching" >Enter new comment
+      </button>
+      <button class="btn btn-danger" style="margin-left: 1rem;" (click)="openPopUpDeletePost = true" >Delete Post</button>
+    </div>
+
+
+    <form
+      class="add-comment-form text-center"
+      *ngIf="addCommentBox"
+      (ngSubmit)="addNewComment()"
+      #newCommentForm="ngForm"
+    >
+      <textarea
+        name="comment"
+        #comment="ngModel"
+        cols="30"
+        rows="10"
+        [(ngModel)]="newComment.body"
+        minlength="10"
+        required
+        style="resize: none;"
+      ></textarea>
+      <div
+        class="alert alert-danger"
+        *ngIf="comment.invalid && comment.touched"
+      >
+        Min length is 10 characters.
+      </div>
+
+      <div class="button-group d-flex justify-content-center ">
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="!newCommentForm.form.valid"
+        >
+          ADD COMMENT
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+  <!-- BOX FOR DELETE POST-->
+  <div class="delete-pop-up" *ngIf="openPopUpDeletePost">
+    <p class="text-white d-flex justify-content-center">Are you sure you want to delete this post?</p>
+    <div class="button-delete-pop-up">
+      <div class="button-group d-flex justify-content-center" style="margin-bottom: 3rem;">
+        <button class="btn btn-danger " (click)="deletePost()">Yes</button>
+        <button class="btn btn-light" (click)="openPopUpDeletePost = false">No</button>
+      </div>
+    </div>
+  </div>
+
+
+   <!-- Footer -->
+   <footer class="text-center text-lg-start bg-body-tertiary text-muted ">
+    <!-- Copyright -->
+    <div class="text-center pt-4 pb-2" style="background-color: rgba(0, 0, 0, 0.05);">
+    © 2021 Copyright:
+    <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+    </div>
+    <div class="text-center pb-4" style="background-color: rgba(0, 0, 0, 0.05);">
+        Created by <b>Luigi Buono</b>
+        </div>
+    
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
+  

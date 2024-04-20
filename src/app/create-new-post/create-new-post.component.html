@@ -1,0 +1,64 @@
+<app-navbar></app-navbar>
+
+<div class="container cont2">
+  <div class="card p-4 mx-auto" style="max-width: 400px;">
+    <h1 class="text-center mb-4">New Post</h1>
+    <form class="speaker-form" #newPostForm="ngForm" (ngSubmit)="createNewPost()">
+      <div class="mb-3">
+        <label for="title" class="form-label">Post Title</label>
+        <input
+          #title="ngModel"
+          name="title"
+          type="text"
+          minlength="5"
+          required
+          [(ngModel)]="newPost.title"
+          class="form-control"
+        />
+        <div class="alert alert-danger" *ngIf="title.invalid && title.touched">
+          Your title is invalid, min length is 5 characters
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label for="content" class="form-label">Content</label>
+        <textarea
+          name="body"
+          #body="ngModel"
+          class="form-control"
+          rows="10"
+          [(ngModel)]="newPost.body"
+          required
+          minlength="20"
+        ></textarea>
+        <div class="alert alert-danger mt-2" *ngIf="body.invalid && body.touched">
+          Your content is invalid, min length is 20 characters
+        </div>
+      </div>
+      
+  
+      <div class="text-center">
+        <button class="btn btn-primary" type="submit" [disabled]="!newPostForm.form.valid">Save</button>
+      </div>
+    </form>
+    <div class="response-box">
+      <p class="response text-center mt-3">{{ response }}</p>
+    </div>
+  </div>
+</div>
+
+
+ <!-- Footer -->
+ <footer class="text-center text-lg-start bg-body-tertiary text-muted ">
+  <!-- Copyright -->
+  <div class="text-center pt-4 pb-2" style="background-color: rgba(0, 0, 0, 0.05);">
+  © 2021 Copyright:
+  <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+  </div>
+  <div class="text-center pb-4" style="background-color: rgba(0, 0, 0, 0.05);">
+      Created by <b>Luigi Buono</b>
+      </div>
+  
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
